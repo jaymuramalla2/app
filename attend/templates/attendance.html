@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        input[type="text"], input[type="submit"] {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 80%;
+            transition: border-color 0.3s;
+        }
+        input[type="submit"] {
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+    </style>
+    <script>
+        function validateForm(event) {
+            const rollNo = document.forms["attendanceForm"]["roll_no"].value;
+            const regex = /^(?=.*\d)(?=.*[a-zA-Z]).{7,10}$/; // At least one letter, one number, length between 7 and 10
+
+            if (!regex.test(rollNo)) {
+                alert("Roll number must be between 7 to 10 characters long and contain at least one letter and one number.");
+                event.preventDefault(); // Prevent form submission
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Mark Attendance for {{ subject }}</h1>
+        <form name="attendanceForm" method="post" onsubmit="return validateForm(event);">
+            <input type="hidden" name="subject" value="{{ subject }}">
+            <input type="text" name="roll_no" placeholder="Enter Roll No" required>
+            <input type="submit" value="Present..!">
+        </form>
+    </div>
+</body>
+</html>

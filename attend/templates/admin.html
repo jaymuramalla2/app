@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ subject }} Attendance</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 300px; /* Adjust width as needed */
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .qr-icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ subject }} Attendance</h1>
+        <div class="qr-icon">📱</div> <!-- You can replace this with an actual QR image if needed -->
+
+        <form method="post" action="/generate_qr">
+            <input type="hidden" name="subject" value="{{ subject }}">
+            <button type="submit">Generate QR Code</button>
+        </form>
+
+        <form method="get" action="/show_attendance">
+            <input type="hidden" name="subject" value="{{ subject }}">
+            <button type="submit">Show Attendance</button>
+        </form>
+    </div>
+</body>
+</html>
